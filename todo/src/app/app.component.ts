@@ -11,6 +11,7 @@ import { TodoItem } from './components/todo/todoItem';
 export class AppComponent {
   title = 'todo';
   readonly APIURL = "https://fullstack-mern-todo-backend.onrender.com/"
+  showComplete: boolean = false
 
   constructor(private http:HttpClient) {}
 
@@ -29,7 +30,7 @@ export class AppComponent {
   getTodos(){
     this.http.get(this.APIURL).subscribe(data => {
       this.notes = data
-      this.notes.forEach((note: any) => this.list.addItem(note.text))
+      this.notes.forEach((note: any) => this.list.addItem(note.text, note.complete))
     })
   }
 
@@ -42,12 +43,12 @@ export class AppComponent {
   }
 
   get items(): readonly TodoItem[] {
-    return this.list.items.filter(item => !item.complete);
+    return this.list.items.filter(item => this.showComplete || !item.complete);
   }
 
-  addItem(newItem: string){
+  saveItem(newItem: string, completed: boolean = false){
     if(newItem != "") this.list.addItem(newItem)
-    this.http.post(this.APIURL + 'save', { text: newItem }).subscribe(data => {
+    this.http.post(this.APIURL + 'save', { text: newItem, complete: completed }).subscribe(data => {
       alert("Added Successfully");
     })
   }
