@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http'
+
 
 import { FormsModule } from '@angular/forms'
 import { MatButtonModule } from '@angular/material/button';
@@ -23,6 +25,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatBadgeModule, MatTableModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatSlideToggleModule
   ],
   providers: [],
