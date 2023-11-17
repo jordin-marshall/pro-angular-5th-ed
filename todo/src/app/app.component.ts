@@ -17,11 +17,13 @@ export class AppComponent {
 
   notes:any=[];
 
-  private list = new TodoList("Bob", [
-    new TodoItem("Go for run", true),
-    new TodoItem("Get Flowers"),
-    new TodoItem("Collect Tickets"),
-  ]);
+  // private list = new TodoList("Bob", [
+  //   new TodoItem("Go for run", true),
+  //   new TodoItem("Get Flowers"),
+  //   new TodoItem("Collect Tickets"),
+  // ]);
+
+  private list = new TodoList("Jordin");
 
   ngOnInit(){
     this.getTodos()
@@ -51,6 +53,10 @@ export class AppComponent {
     this.http.post(this.APIURL + 'save', { text: newItem, complete: completed }).subscribe(data => {
       alert("Added Successfully");
     })
+  }
+
+  updateItem(itemId: string, completed: boolean){
+    console.log(`Item ID (${itemId}) has been updated to the status of ${completed ? 'completed' : 'incomplete'}`)
   }
 
 }
